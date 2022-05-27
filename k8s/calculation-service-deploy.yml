@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculation-service-app
+  labels:
+    app: calculation-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calculation-service-app
+  template:
+    metadata:
+      labels:
+        app: calculation-service-app
+    spec:
+      containers:
+        - name: calculation-service-app
+          image: karthicb92/calculation-service:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: calculation-service-svc
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8082
+  selector:
+    app: calculation-service-app

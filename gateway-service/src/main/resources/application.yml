@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: calculation-service
+          uri: lb://calculation-service
+          predicates:
+            - Path=/calc**/**, /greet/**, /swagger**/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: calculation-service
+                fallbackuri: forward:/calculationServiceFallBack
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: api-gateway
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
