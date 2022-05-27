@@ -94,7 +94,7 @@ jobs:
    * https://console.cloud.google.com/
 2) Get credentials from created cluster to interact with it:
    * gcloud container clusters get-credentials cluster-demo-1 --zone 
-     us-central1-c --<project-id>
+     us-central1-c --project-id
 3) Once we are authenticated, then we can use kubectl command which interacts with Kubernetes Master Controller
 4) To check the pod status execute below command
    * kubectl get pods -n <namespace>
