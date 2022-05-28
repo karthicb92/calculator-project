@@ -11,8 +11,50 @@ Calculator project receives input as an arithmetic expression from the user, per
 
 ## Calculation Service Details
 
-| Sample Request/Response   | Request: </br> http://ip/calculus?query=KDIqMy40KQ==</br> Response:</br> {     "error": false,     "result": 6.8 } </br></br> |
-| Error scenarios | Request: </br> http://<hostname:port>/calculus </br> Response: </br> {    "error": true,     "message": "query parameter is missing" }  </br></br> Request: </br>http://<hostname:port>/calculus?query= </br> Response: </br>  {     "error": true,     "message": "Query Input is empty. Please pass the input for calculation" } </br></br> Request: </br> http://<hostname:port>/calculus?query=YWJjZGU= </br> Response: </br> {     "error": true,     "message": "Wrong query expression" } </br></br> Request: </br> http://<hostname:port>/calculus?query=$ </br> Response: </br> {     "error": true,     "message": "Invalid query input. Not a base64 encoded String" } |
+#### Success Scenario
+
+```http
+  GET /calculus?query=KDIqMy40KQ==
+```
+
+| Status Code     | Response                |
+| :------- | :------------------------- |
+| `200` | {  "error": false,  "result": 6.8 } |
+
+#### Error Scenarios
+
+```http
+1)  GET /calculus
+```
+
+| Status Code     | Response                       |
+| :------- | :-------------------------------- |
+| `400` | {  "error": true, "message": "query parameter is missing" }  |
+
+```http
+2)   GET /calculus?query=
+```
+
+| Status Code     | Response                       |
+| :------- | :-------------------------------- |
+| `400` | {  "error": true,  "message": "Query Input is empty. Please pass the input for calculation" }  |
+
+
+```http
+3)  GET /calculus?query=YWJjZGU= 
+```
+
+| Status Code     | Response                       |
+| :------- | :-------------------------------- |
+| `400` | {     "error": true,     "message": "Wrong query expression" }|
+
+```http
+4)  GET /calculus?query=$
+```
+
+| Status Code     | Response                       |
+| :------- | :-------------------------------- |
+| `500` | {     "error": true,     "message": "Invalid query input. Not a base64 encoded String" } |
 
 ## Installation
 
