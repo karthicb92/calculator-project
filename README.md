@@ -24,7 +24,7 @@ Calculator project receives input as an arithmetic expression from the user, per
 #### Error Scenarios
 
 ```http
-1)  GET /calculus
+  GET /calculus
 ```
 
 | Status Code     | Response                       |
@@ -32,7 +32,7 @@ Calculator project receives input as an arithmetic expression from the user, per
 | `400` | {  "error": true, "message": "query parameter is missing" }  |
 
 ```http
-2)   GET /calculus?query=
+  GET /calculus?query=
 ```
 
 | Status Code     | Response                       |
@@ -41,7 +41,7 @@ Calculator project receives input as an arithmetic expression from the user, per
 
 
 ```http
-3)  GET /calculus?query=YWJjZGU= 
+  GET /calculus?query=YWJjZGU= 
 ```
 
 | Status Code     | Response                       |
@@ -49,7 +49,7 @@ Calculator project receives input as an arithmetic expression from the user, per
 | `400` | {     "error": true,     "message": "Wrong query expression" }|
 
 ```http
-4)  GET /calculus?query=$
+  GET /calculus?query=$
 ```
 
 | Status Code     | Response                       |
