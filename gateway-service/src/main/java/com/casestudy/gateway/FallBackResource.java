@@ -13,6 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class FallBackResource {
+	
+	/**
+	 * Prints Hello World message
+	 * @return
+	 */
+	@GetMapping("/")
+	public String greet() {
+		return "Hello from Gateway Service";
+	}
 
 	/**
 	 * When Calculation service is done, this method is executed as a fallback
